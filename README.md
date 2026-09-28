@@ -28,4 +28,4 @@ Tài khoản mẫu:
 | 2 | `admin` hoặc `admin@gocsach.vn` | `123456` |
 | 3 | `admin` hoặc `admin@gocsach.vn` | `123456` |
 
-Ở Ví dụ 3, mã xác nhận được in ở cửa sổ chạy chương trình. Có thể cấu hình SMTP thật bằng biến môi trường, không lưu mật khẩu trong source.
+Ở Ví dụ 3, mã xác nhận được in ở cửa sổ chạy chương trình khi `MAIL_ENABLED=false`. Đặt `MAIL_ENABLED=true` và cấu hình các biến `MAIL_*` để gửi email thật; không lưu mật khẩu trong source.
