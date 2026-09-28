@@ -1,0 +1,5 @@
+package vn.edu.hcmute.example3;
+import java.util.*; import org.springframework.data.domain.*; import org.springframework.data.jpa.repository.*; import org.springframework.data.repository.query.Param;
+interface UserRepository extends JpaRepository<AppUser,Long>{Optional<AppUser> findByUsernameOrEmail(String username,String email); Optional<AppUser> findByEmail(String email); boolean existsByUsernameOrEmail(String username,String email);}
+interface ProductRepository extends JpaRepository<Product,Long>{@EntityGraph(attributePaths="owner") Page<Product> findByNameContainingIgnoreCase(String q,Pageable pageable); @EntityGraph(attributePaths="owner") Page<Product> findByOwnerAndNameContainingIgnoreCase(AppUser owner,String q,Pageable pageable); @EntityGraph(attributePaths="owner") Optional<Product> findOneById(Long id);}
+interface OtpRepository extends JpaRepository<OtpToken,Long>{@Query("select o from OtpToken o where o.email=:email and o.purpose=:purpose and o.usedAt is null order by o.id desc") List<OtpToken> findActive(@Param("email") String email,@Param("purpose") String purpose,Pageable page);}

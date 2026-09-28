@@ -1,0 +1,4 @@
+package vn.edu.hcmute.example1;
+import org.junit.jupiter.api.Test; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc; import org.springframework.boot.test.context.SpringBootTest; import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get; import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+@SpringBootTest(properties={"spring.datasource.url=jdbc:h2:mem:e1","spring.jpa.hibernate.ddl-auto=create-drop"}) @AutoConfigureMockMvc class Example1ApplicationTests { @Autowired MockMvc mvc; @Test void loginPageIsPublic() throws Exception {mvc.perform(get("/login")).andExpect(status().isOk());} @Test void homeRequiresLogin() throws Exception {mvc.perform(get("/")).andExpect(status().is3xxRedirection());}}
